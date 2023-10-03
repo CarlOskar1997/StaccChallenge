@@ -44,4 +44,5 @@ class Bank:
 
 test = Bank()
 test.annual_savings_check()
+print("test")
 #test.register_user('xyz123', '**********123', 'Checking', 1000000, 'NOK', 'Carl')
