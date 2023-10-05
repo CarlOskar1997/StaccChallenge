@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="6c48892" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.2.0" camunda:diagramRelationId="1bbe1da0-1bc9-4a80-b6b7-d6193f47f0ab">
+  <bpmn:process id="Process_1wxxffx" isExecutable="true">
+    <bpmn:extensionElements>
+      <zeebe:userTaskForm id="userTaskForm_371ngvp">{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.2.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "5118df8"
+  },
+  "schemaVersion": 11,
+  "components": [
+    {
+      "values": [
+        {
+          "label": "Høy",
+          "value": "høy"
+        },
+        {
+          "label": "Medium",
+          "value": "medium"
+        },
+        {
+          "label": "Lav",
+          "value": "lav"
+        }
+      ],
+      "label": "Sett deg selv mål!",
+      "type": "select",
+      "layout": {
+        "row": "Row_07ids8s",
+        "columns": null
+      },
+      "id": "Field_15z9gf6",
+      "key": "Sparing",
+      "description": "Her kan du velge mellom tre nivåer"
+    }
+  ],
+  "type": "default",
+  "id": "Form_0middic"
+}</zeebe:userTaskForm>
+    </bpmn:extensionElements>
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_0nv27lj</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0nv27lj" sourceRef="StartEvent_1" targetRef="Activity_00jxlkx" />
+    <bpmn:userTask id="Activity_00jxlkx" name="Sett deg et mål!">
+      <bpmn:extensionElements>
+        <zeebe:formDefinition formKey="camunda-forms:bpmn:userTaskForm_371ngvp" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0nv27lj</bpmn:incoming>
+      <bpmn:outgoing>Flow_0zm1lwz</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_09fcl62">
+      <bpmn:incoming>Flow_0zm1lwz</bpmn:incoming>
+      <bpmn:outgoing>Flow_1xmjyhj</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1dul7kd</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1veejhl</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0zm1lwz" sourceRef="Activity_00jxlkx" targetRef="Gateway_09fcl62" />
+    <bpmn:task id="Activity_0gnqt4j" name="Spare mye">
+      <bpmn:incoming>Flow_1xmjyhj</bpmn:incoming>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_1xmjyhj" sourceRef="Gateway_09fcl62" targetRef="Activity_0gnqt4j">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=Sparing = "høy"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:task id="Activity_18a94fd" name="Spare litt">
+      <bpmn:incoming>Flow_1dul7kd</bpmn:incoming>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_1dul7kd" sourceRef="Gateway_09fcl62" targetRef="Activity_18a94fd">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=Sparing = "medium"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:task id="Activity_1ow5ga4" name="Spare lite">
+      <bpmn:incoming>Flow_1veejhl</bpmn:incoming>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_1veejhl" sourceRef="Gateway_09fcl62" targetRef="Activity_1ow5ga4">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=Sparing = "lav"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1wxxffx">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="150" y="100" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ay9369_di" bpmnElement="Activity_00jxlkx">
+        <dc:Bounds x="310" y="78" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_09fcl62_di" bpmnElement="Gateway_09fcl62" isMarkerVisible="true">
+        <dc:Bounds x="535" y="93" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0gnqt4j_di" bpmnElement="Activity_0gnqt4j">
+        <dc:Bounds x="710" y="78" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_18a94fd_di" bpmnElement="Activity_18a94fd">
+        <dc:Bounds x="710" y="190" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ow5ga4_di" bpmnElement="Activity_1ow5ga4">
+        <dc:Bounds x="710" y="300" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0nv27lj_di" bpmnElement="Flow_0nv27lj">
+        <di:waypoint x="186" y="118" />
+        <di:waypoint x="310" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0zm1lwz_di" bpmnElement="Flow_0zm1lwz">
+        <di:waypoint x="410" y="118" />
+        <di:waypoint x="535" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1xmjyhj_di" bpmnElement="Flow_1xmjyhj">
+        <di:waypoint x="585" y="118" />
+        <di:waypoint x="710" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1dul7kd_di" bpmnElement="Flow_1dul7kd">
+        <di:waypoint x="560" y="143" />
+        <di:waypoint x="560" y="230" />
+        <di:waypoint x="710" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1veejhl_di" bpmnElement="Flow_1veejhl">
+        <di:waypoint x="560" y="143" />
+        <di:waypoint x="560" y="340" />
+        <di:waypoint x="710" y="340" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
