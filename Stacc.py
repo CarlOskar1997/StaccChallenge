@@ -8,8 +8,8 @@ class Bank:
         transactions_JSON = json.load(data_trx)
     accounts = accounts_JSON.get("accounts")
     milestones = {"low":100,
-                  "medium":100000,
-                  "high":1000000}
+                  "medium":1000,
+                  "high":10000}
     def __init__(self):
         pass
     def userlist(self):
@@ -32,10 +32,18 @@ class Bank:
         for i in self.accounts:'''
 
             
-    def annual_savings_check(self):
+    def annual_savings_check(self, account_id):
         for i in self.accounts:
-            if i.get("account_type") == "Checking" and i.get("balance") >= self.milestones.get("low"):
-                print("Congratulations!!!!")
+            if i.get("id") == account_id:
+                if i.get("account_type") == "Savings" and self.milestones.get("medium") > i.get("balance") >= self.milestones.get("low"):
+                    print(f"Congratulations, since you have saved money you saved more than",  self.milestones.get("low"), " you gain ...")
+                elif i.get("account_type") == "Savings" and self.milestones.get("high") > i.get("balance") >= self.milestones.get("medium"):
+                    print(f"Congratulations, since you have saved money you saved more than",  self.milestones.get("medium"), " you gain ...")
+                elif i.get("account_type") == "Savings" and  i.get("balance") >= self.milestones.get("high"):
+                    print(f"Congratulations, since you have saved money you saved more than",  self.milestones.get("high"), " you gain ...")
+            else:
+                pass
+            
 
         
 
@@ -43,5 +51,5 @@ class Bank:
 
 
 test = Bank()
-test.annual_savings_check()
+test.annual_savings_check("acc123")
 #test.register_user('xyz123', '**********123', 'Checking', 1000000, 'NOK', 'Carl')
